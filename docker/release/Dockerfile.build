@@ -10,4 +10,4 @@ FROM alpine:latest AS final
 ENTRYPOINT ["/bin/monstache"]
 
 COPY --from=build-app /app/build/linux-amd64/monstache /bin/monstache
-COPY --from=build-app /app/build/plugin.so /bin/plugin.so`
+#COPY --from=build-app /app/build/plugin.so /bin/plugin.so`

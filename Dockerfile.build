@@ -1,16 +1,17 @@
-FROM golang:latest as build
+FROM golang:latest
 RUN apk add --no-cache gcc musl-dev
 
 RUN mkdir /app
+
 WORKDIR /app
+
 COPY . .
+
 RUN go mod download
 
-RUN mkdir -p build/linux-amd64
-
-RUN env GOOS=linux GOARCH=amd64 go build -o build/linux-amd64/monstache -ldflags="-s -w" monstache.go
+RUN make release
 
 #FROM alpine:latest AS final
-#ENTRYPOINT ["/bin/monstache"]
 #COPY --from=build-app /app/build/linux-amd64/monstache /bin/monstache
+#ENTRYPOINT ["/bin/monstache"]
 #COPY --from=build-app /app/build/plugin.so /bin/plugin.so`

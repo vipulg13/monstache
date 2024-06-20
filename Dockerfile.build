@@ -1,19 +1,11 @@
 FROM golang:latest as build
 RUN apk add --no-cache gcc musl-dev
 
-WORKDIR /src
-ARG TARGETOS TARGETARCH
-RUN --mount=target=. \
-    --mount=type=cache,target=/root/.cache/go-build \
-    --mount=type=cache,target=/go/pkg \
-	go mod download; \
-    GOOS=$TARGETOS GOARCH=$TARGETARCH go build -o /out/monstache .
-
-
-
-#WORKDIR /app
-#COPY . .
-#RUN go mod download
+RUN mkdir /app
+WORKDIR /app
+COPY . .
+RUN go mod download
+RUN make release
 
 #FROM alpine:latest AS final
 #ENTRYPOINT ["/bin/monstache"]

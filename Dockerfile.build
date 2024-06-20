@@ -5,7 +5,7 @@ WORKDIR /app
 COPY . .
 RUN go mod download
 
-FROM alpine:latest AS final
+#FROM alpine:latest AS final
 
 ENTRYPOINT ["/bin/monstache"]
 

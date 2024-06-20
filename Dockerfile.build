@@ -1,4 +1,4 @@
-#FROM golang:latest AS build-app
+FROM golang:latest
 RUN apk add --no-cache gcc musl-dev
 
 WORKDIR /app

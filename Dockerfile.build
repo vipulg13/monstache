@@ -1,5 +1,5 @@
 FROM golang:latest
-RUN apk update && apk add --no-cache make gcc musl-dev
+RUN apk update && apk add --no-cache make gcc musl-dev zip wget curl
 
 RUN mkdir /app
 
